@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ChatGPTAPIBrowser } from "chatgpt"
+// import { ChatGPTAPIBrowser } from "chatgpt"
 import { computed, reactive, ref } from "vue"
 import { tones } from "./data/tones"
 
@@ -54,18 +54,18 @@ ${details.additionalInformation}
 //     password: process.env.OPENAI_PASSWORD,
 // })
 
-const api = new ChatGPTAPIBrowser({
-    email: "liberintwari+1@gmail.com",
-    password: "MKSrAFMpgZt9P2z",
-})
+// const api = new ChatGPTAPIBrowser({
+//     email: "liberintwari+1@gmail.com",
+//     password: "MKSrAFMpgZt9P2z",
+// })
 
 // await api.initSession()
 
 async function generateCoverLetter() {
     loading.value = true
-    const result = await api.sendMessage("Hello World!")
+    // const result = await api.sendMessage("Hello World!")
 
-    console.log(result)
+    // console.log(result)
     loading.value = false
 }
 </script>
