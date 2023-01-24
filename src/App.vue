@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ChatGPTAPIBrowser } from "chatgpt"
 import { computed, reactive, ref } from "vue"
 import { tones } from "./data/tones"
 
@@ -13,14 +14,60 @@ const details = reactive({
     additionalInformation: "",
 })
 
+const prompt = computed(() => {
+    return `
+Assume you are a job seeker below is your RESUME, and remember """ marks the beginning and the end of the provided information.
 
+RESUME:
+"""
+${details.resume}
+"""
+
+by using provided RESUME, generate a cover letter  showing interest and why you are a good fit for the following job
+
+JOB TITLE:
+"""
+${details.jobTitle}
+"""
+
+COMPANY:
+"""
+${details.companyName}
+"""
+
+JOB DESCRIPTION:
+"""
+${details.jobDescription}
+"""
+
+While writing a cover letter, write it in the following tones '${details.tone.join(",")}'.
+
+You may also consider the following info while writing the cover letter
+"""
+${details.additionalInformation}
+"""
+`
+})
 
 // const api = new ChatGPTAPIBrowser({
 //     email: process.env.OPENAI_EMAIL,
 //     password: process.env.OPENAI_PASSWORD,
 // })
 
+const api = new ChatGPTAPIBrowser({
+    email: "liberintwari+1@gmail.com",
+    password: "MKSrAFMpgZt9P2z",
+})
 
+// await api.initSession()
+
+async function generateCoverLetter() {
+    loading.value = true
+    const result = await api.sendMessage("Hello World!")
+
+    console.log(result)
+    loading.value = false
+}
 </script>
 
 <template>
