@@ -35,18 +35,25 @@ export default defineEventHandler(async (event) => {
         ${additionalInformation}
         """
         `
+        console.log('init :')
+        console.log('Authenticating...')
+
         const api = new ChatGPTAPIBrowser({
             email: "liberintwari+1@gmail.com",
             password: "MKSrAFMpgZt9P2z",
         })
 
+        console.log("Initiationg session")
+
         await api.initSession()
 
-        const result = await api.sendMessage("Hello World!")
+        console.log("Sending message")
+
+        const result = await api.sendMessage(prompt)
 
         console.log(result)
 
-        return { message: "Success", prompt: prompt }
+        return { message: "Success", result: result }
 
   })
   
