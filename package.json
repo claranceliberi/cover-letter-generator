@@ -7,7 +7,8 @@
     "build": "vue-tsc --noEmit && vite build",
     "lint:js": "eslint src --ext .js,.ts,.vue",
     "preview": "vite preview",
-    "test": "jest src"
+    "test": "jest src",
+    "vercel": "vercel"
   },
   "dependencies": {
     "@headlessui/vue": "^1.7.7",
@@ -21,6 +22,7 @@
     "@types/jest": "^29.2.6",
     "@typescript-eslint/eslint-plugin": "^5.49.0",
     "@typescript-eslint/parser": "^5.49.0",
+    "@vercel/node": "^2.8.15",
     "@vitejs/plugin-vue": "^4.0.0",
     "@vue/eslint-config-typescript": "^11.0.2",
     "@vue/test-utils": "^2.2.7",
@@ -39,5 +41,8 @@
     "vue-eslint-parser": "^9.1.0",
     "vue-jest": "^5.0.0-alpha.10",
     "vue-tsc": "^1.0.24"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
