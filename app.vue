@@ -5,19 +5,18 @@ import { tones } from "./data/tones"
 
 const loading = ref(false)
 
-
 const details = reactive({
-  job: "",
-  company: "",
-  description: "",
-  resume: "",
-  tone: [],
-  additionalInformation: "",
+    job: "",
+    company: "",
+    description: "",
+    resume: "",
+    tone: [],
+    additionalInformation: "",
 })
 
 async function generateCoverLetter() {
     loading.value = true
-    const res = await $fetch('/api/prompt', { method: 'post', body: details })
+    const res = await $fetch("/api/prompt", { method: "post", body: details })
     console.log(res)
     loading.value = false
 }
