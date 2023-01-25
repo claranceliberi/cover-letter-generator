@@ -4,7 +4,6 @@ export type Tone = {
     emoji: string
 }
 
-
 export const tones: Tone[] = [
     {
         name: "formality",

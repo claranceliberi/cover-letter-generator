@@ -1,9 +1,8 @@
 import { ChatGPTAPIBrowser } from "chatgpt"
 
 export default defineEventHandler(async (event) => {
-
-        const { job, company, description, resume, tone, additionalInformation } = await readBody(event)
-        const prompt = `
+    const { job, company, description, resume, tone, additionalInformation } = await readBody(event)
+    const prompt = `
         Assume you are a job seeker below is your RESUME, and remember """ marks the beginning and the end of the provided information.
 
         RESUME:
@@ -35,25 +34,23 @@ export default defineEventHandler(async (event) => {
         ${additionalInformation}
         """
         `
-        console.log('init :')
-        console.log('Authenticating...')
+    // console.log("init :")
+    // console.log("Authenticating...")
 
-        const api = new ChatGPTAPIBrowser({
-            email: "liberintwari+1@gmail.com",
-            password: "MKSrAFMpgZt9P2z",
-        })
+    const api = new ChatGPTAPIBrowser({
+        email: "liberintwari+1@gmail.com",
+        password: "MKSrAFMpgZt9P2z",
+    })
 
-        console.log("Initiationg session")
+    // console.log("Initiationg session")
 
-        await api.initSession()
+    await api.initSession()
 
-        console.log("Sending message")
+    // console.log("Sending message")
 
-        const result = await api.sendMessage(prompt)
+    const result = await api.sendMessage(prompt)
 
-        console.log(result)
+    // console.log(result)
 
-        return { message: "Success", result: result }
-
-  })
-  
+    return { message: "Success", result }
+})

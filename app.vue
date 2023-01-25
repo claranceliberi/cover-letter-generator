@@ -1,14 +1,13 @@
 <script setup lang="ts">
-// import { ChatGPTAPIBrowser } from "chatgpt"
-import { computed, reactive, ref } from "vue"
+import { reactive, ref } from "vue"
 import { tones } from "./data/tones"
 
 const loading = ref(false)
 
 const details = reactive({
     job: "",
-    company: "",
     description: "",
+    company: "",
     resume: "",
     tone: [],
     additionalInformation: "",
@@ -16,7 +15,9 @@ const details = reactive({
 
 async function generateCoverLetter() {
     loading.value = true
+    // eslint-disable-next-line no-undef
     const res = await $fetch("/api/prompt", { method: "post", body: details })
+    // eslint-disable-next-line no-console
     console.log(res)
     loading.value = false
 }
@@ -34,29 +35,29 @@ async function generateCoverLetter() {
                     <div class="col-span-6 sm:col-span-3">
                         <label for="job-title" class="block text-sm font-medium text-gray-700">Job Title</label>
                         <input
+                            id="job-title"
                             v-model="details.job"
                             type="text"
                             name="job-title"
-                            id="job-title"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div>
                     <div class="col-span-6 sm:col-span-3">
                         <label for="company-name" class="block text-sm font-medium text-gray-700">Company name</label>
                         <input
+                            id="company-name"
                             v-model="details.company"
                             type="text"
                             name="company-name"
-                            id="company-name"
                             class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
                         />
                     </div>
                     <div class="mt-2 space-y-4 col-span-6">
                         <!-- h element with text "Tone" -->
                         <h3 class="text-base font-medium leading-6 text-gray-700">Tone</h3>
-                        <div class="flex items-start" v-for="tone in tones" :key="tone.emoji">
+                        <div v-for="tone in tones" :key="tone.emoji" class="flex items-start">
                             <div class="flex h-5 items-center">
-                                <input v-model="details.tone" :id="`tone-${tone.name}`" name="tone" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
+                                <input :id="`tone-${tone.name}`" v-model="details.tone" name="tone" type="checkbox" class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500" />
                             </div>
                             <div class="ml-3 text-sm">
                                 <label :for="`tone-${tone.name}`" class="font-medium text-gray-700">{{ tone.emoji + " " + tone.name }}</label>
@@ -68,8 +69,8 @@ async function generateCoverLetter() {
                         <label for="job-description" class="block text-sm font-medium text-gray-700">Job Description</label>
                         <div class="mt-1">
                             <textarea
-                                v-model="details.description"
                                 id="job-description"
+                                v-model="details.description"
                                 name="job-description"
                                 rows="3"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -82,8 +83,8 @@ async function generateCoverLetter() {
                         <label for="resume" class="block text-sm font-medium text-gray-700">Resume</label>
                         <div class="mt-1">
                             <textarea
-                                v-model="details.resume"
                                 id="resume"
+                                v-model="details.resume"
                                 name="resume"
                                 rows="3"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -96,8 +97,8 @@ async function generateCoverLetter() {
                         <label for="additional information" class="block text-sm font-medium text-gray-700">Additional Information 🔥</label>
                         <div class="mt-1">
                             <textarea
-                                v-model="details.additionalInformation"
                                 id="additional information"
+                                v-model="details.additionalInformation"
                                 name="additional information"
                                 rows="3"
                                 class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
@@ -113,10 +114,10 @@ my name: Clarance Liberi"
                 </div>
                 <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
                     <button
-                        @click="generateCoverLetter"
                         :disabled="loading"
                         type="button"
                         class="inline-flex justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        @click="generateCoverLetter"
                     >
                         Save
                     </button>
